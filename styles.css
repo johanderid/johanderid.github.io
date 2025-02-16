@@ -1,48 +1,48 @@
 body {
     font-family: sans-serif;
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
-    min-height: 100vh;      /* Ensure full viewport height */
-    margin: 0;              /* Remove default margins */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
 #game-area {
+    display: flex; /* Use flexbox for layout */
+    width: 80%; /* Adjust as needed */
+    max-width: 900px; /* Set a maximum width */
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 5px;
 }
 
-#player1-area, #player2-area {
-    margin-bottom: 20px;
+.player-area {
+    flex: 1; /* Each player area takes up equal space */
     text-align: center;
+    padding: 20px; /* Add some padding around player info */
+    border: 1px solid #ccc; /* Add borders to separate player areas */
+}
+
+/* Optional: Add some margin to separate player areas */
+#player1-area {
+    border-right: none; /* Remove right border of player 1 */
+}
+
+#player2-area {
+    border-left: none; /* Remove left border of player 2 */
 }
 
 #input-area {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr); /* Adjust as needed */
-    gap: 5px;
-    margin-bottom: 20px;
-}
-
-#number-buttons {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    gap: 5px;
-}
-
-button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    margin-top: 20px; /* Add margin to separate input area */
+    text-align: center; /* Center input elements */
 }
 
 #game-controls {
     display: flex;
-    align-items: center; /* Vertically align items */
+    align-items: center;
     justify-content: center;
     gap: 10px;
+    margin-top: 20px; /* Add margin to separate game controls */
 }
 
 #message-area {
