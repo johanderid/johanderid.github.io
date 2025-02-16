@@ -1,18 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cloudcareer-showcase</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-    <meta property="og:image" content="/og-image.png" />
-  </head>
+<html>
+<head>
+    <title>Darts Scoring App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-area">  <div id="player1-area">
+            <h2>Player 1: <input type="text" id="player1-name" value="Player 1"></h2>
+            <p id="player1-score">501</p>
+            <p id="player1-average">Avg: 0</p> </div>
+        <div id="player2-area">
+            <h2>Player 2: <input type="text" id="player2-name" value="Player 2"></h2>
+            <p id="player2-score">501</p>
+            <p id="player2-average">Avg: 0</p>
+        </div>
 
-  <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+        <div id="input-area">
+            <div id="number-buttons">
+            </div>
+            <button id="double-button">Double</button>
+            <button id="triple-button">Triple</button>
+            <button id="miss-button">Miss</button>
+        </div>
+
+        <div id="game-controls">
+            <button id="new-game-button">New Game</button>
+            <label for="legs-sets">Legs/Sets:</label>
+            <select id="legs-sets">
+                <option value="unlimited">Unlimited</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div id="message-area"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
