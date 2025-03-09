@@ -1,0 +1,107 @@
+{
+  "AI + Machine Learning": {
+    "description": "Artificial Intelligence and Machine Learning services",
+    "resources": [
+      {"name": "Machine Learning Workspace", "abbreviation": "mlw"},
+      {"name": "Cognitive Services", "abbreviation": "cog"},
+      {"name": "Bot Services", "abbreviation": "bot"},
+      {"name": "Azure OpenAI", "abbreviation": "aoai"}
+    ]
+  },
+  "Analytics": {
+    "description": "Data analytics and processing services",
+    "resources": [
+      {"name": "Azure Synapse Analytics", "abbreviation": "syn"},
+      {"name": "Azure Databricks", "abbreviation": "adb"},
+      {"name": "HDInsight", "abbreviation": "hdi"},
+      {"name": "Analysis Services", "abbreviation": "as"},
+      {"name": "Data Factory", "abbreviation": "adf"},
+      {"name": "Stream Analytics", "abbreviation": "asa"}
+    ]
+  },
+  "Compute + Containers": {
+    "description": "Compute and container services",
+    "resources": [
+      {"name": "Virtual Machine", "abbreviation": "vm"},
+      {"name": "Virtual Machine Scale Set", "abbreviation": "vmss"},
+      {"name": "Container Registry", "abbreviation": "cr"},
+      {"name": "Container Instance", "abbreviation": "ci"},
+      {"name": "Kubernetes Service", "abbreviation": "aks"},
+      {"name": "App Service", "abbreviation": "app"},
+      {"name": "Function App", "abbreviation": "func"},
+      {"name": "Service Fabric", "abbreviation": "sf"},
+      {"name": "Batch Account", "abbreviation": "batch"}
+    ]
+  },
+  "Databases": {
+    "description": "Database services",
+    "resources": [
+      {"name": "Azure SQL Database", "abbreviation": "sql"},
+      {"name": "Azure SQL Managed Instance", "abbreviation": "sqlmi"},
+      {"name": "MySQL Database", "abbreviation": "mysql"},
+      {"name": "PostgreSQL Database", "abbreviation": "psql"},
+      {"name": "Cosmos DB", "abbreviation": "cosmos"},
+      {"name": "Cache for Redis", "abbreviation": "redis"}
+    ]
+  },
+  "DevOps": {
+    "description": "Development and operations tools",
+    "resources": [
+      {"name": "DevOps Project", "abbreviation": "dev"},
+      {"name": "Application Insights", "abbreviation": "appi"},
+      {"name": "Log Analytics Workspace", "abbreviation": "log"}
+    ]
+  },
+  "Integration": {
+    "description": "Integration services",
+    "resources": [
+      {"name": "Logic Apps", "abbreviation": "logic"},
+      {"name": "Service Bus", "abbreviation": "sb"},
+      {"name": "API Management", "abbreviation": "apim"},
+      {"name": "Event Grid", "abbreviation": "evg"},
+      {"name": "Event Hubs", "abbreviation": "evh"}
+    ]
+  },
+  "IoT": {
+    "description": "Internet of Things services",
+    "resources": [
+      {"name": "IoT Hub", "abbreviation": "iot"},
+      {"name": "IoT Central", "abbreviation": "iotc"},
+      {"name": "Digital Twins", "abbreviation": "dt"},
+      {"name": "Time Series Insights", "abbreviation": "tsi"}
+    ]
+  },
+  "Networking": {
+    "description": "Network services",
+    "resources": [
+      {"name": "Virtual Network", "abbreviation": "vnet"},
+      {"name": "Subnet", "abbreviation": "snet"},
+      {"name": "Network Security Group", "abbreviation": "nsg"},
+      {"name": "Application Gateway", "abbreviation": "agw"},
+      {"name": "Load Balancer", "abbreviation": "lb"},
+      {"name": "Public IP", "abbreviation": "pip"},
+      {"name": "VPN Gateway", "abbreviation": "vpn"},
+      {"name": "ExpressRoute Circuit", "abbreviation": "erc"},
+      {"name": "Front Door", "abbreviation": "fd"},
+      {"name": "CDN Profile", "abbreviation": "cdn"}
+    ]
+  },
+  "Security": {
+    "description": "Security services",
+    "resources": [
+      {"name": "Key Vault", "abbreviation": "kv"},
+      {"name": "Application Security Group", "abbreviation": "asg"},
+      {"name": "DDoS Protection Plan", "abbreviation": "ddos"},
+      {"name": "Azure Firewall", "abbreviation": "afw"}
+    ]
+  },
+  "Storage": {
+    "description": "Storage services",
+    "resources": [
+      {"name": "Storage Account", "abbreviation": "st"},
+      {"name": "Recovery Services Vault", "abbreviation": "rsv"},
+      {"name": "Backup Vault", "abbreviation": "bv"},
+      {"name": "Data Lake Storage", "abbreviation": "dls"}
+    ]
+  }
+}
