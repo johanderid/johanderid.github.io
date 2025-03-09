@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Settings } from 'lucide-react';
+import { Settings, AlertCircle } from 'lucide-react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import resourceCategories from '../data/resource_categories.json';
 import environments from '../data/environments.json';
 import regions from '../data/regions.json';
+
+interface Resource {
+  name: string;
+  abbreviation: string;
+  namingPattern: string;
+  maxLength: number;
+  allowedCharacters: string;
+  description: string;
+}
 
 interface FormData {
   category: string;
@@ -14,6 +23,12 @@ interface FormData {
   instance: string;
   department: string;
   businessUnit: string;
+}
+
+interface ValidationResult {
+  isValid: boolean;
+  warnings: string[];
+  errors: string[];
 }
 
 const DEFAULT_PATTERN = '{resource_type}-{workload}-{environment}-{region}-{instance}';
@@ -34,7 +49,13 @@ export default function NameGenerator() {
   const [generatedName, setGeneratedName] = useState('');
   const [showDepartment, setShowDepartment] = useState(false);
   const [showBusinessUnit, setShowBusinessUnit] = useState(false);
-  const [availableResources, setAvailableResources] = useState<Array<{ name: string; abbreviation: string }>>([]);
+  const [availableResources, setAvailableResources] = useState<Resource[]>([]);
+  const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
+  const [validation, setValidation] = useState<ValidationResult>({
+    isValid: true,
+    warnings: [],
+    errors: [],
+  });
 
   useEffect(() => {
     setShowDepartment(pattern.includes('{department}'));
@@ -43,37 +64,109 @@ export default function NameGenerator() {
 
   useEffect(() => {
     if (formData.category) {
-      setAvailableResources(resourceCategories[formData.category as keyof typeof resourceCategories].resources);
+      setAvailableResources(resourceCategories[formData.category as keyof typeof resourceCategories]?.resources || []);
       setFormData(prev => ({ ...prev, resourceType: '' }));
+      setSelectedResource(null);
     }
   }, [formData.category]);
+
+  useEffect(() => {
+    if (formData.resourceType && formData.category) {
+      const resource = resourceCategories[formData.category as keyof typeof resourceCategories]?.resources.find(
+        r => r.name === formData.resourceType
+      );
+      setSelectedResource(resource || null);
+      if (resource) {
+        setPattern(resource.namingPattern);
+      }
+    }
+  }, [formData.resourceType, formData.category]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const validateName = (name: string): ValidationResult => {
+    const warnings: string[] = [];
+    const errors: string[] = [];
+
+    if (!selectedResource) {
+      return { isValid: true, warnings: [], errors: [] };
+    }
+
+    if (name.length > selectedResource.maxLength) {
+      warnings.push(`Name exceeds maximum length of ${selectedResource.maxLength} characters and has been truncated.`);
+    }
+
+    if (selectedResource.allowedCharacters.includes('lowercase') && name !== name.toLowerCase()) {
+      errors.push('Name must be lowercase.');
+    }
+
+    if (selectedResource.allowedCharacters === 'lowercase alphanumeric' && !/^[a-z0-9]*$/.test(name)) {
+      errors.push('Name can only contain lowercase alphanumeric characters.');
+    } else if (selectedResource.allowedCharacters === 'alphanumeric, hyphens' && !/^[a-zA-Z0-9-]*$/.test(name)) {
+      errors.push('Name can only contain alphanumeric characters and hyphens.');
+    } else if (selectedResource.allowedCharacters === 'lowercase alphanumeric, hyphens' && !/^[a-z0-9-]*$/.test(name)) {
+      errors.push('Name can only contain lowercase alphanumeric characters and hyphens.');
+    } else if (selectedResource.allowedCharacters === 'alphanumeric, hyphen, underscore' && !/^[a-zA-Z0-9-_]*$/.test(name)) {
+      errors.push('Name can only contain alphanumeric characters, hyphens, and underscores.');
+    } else if (selectedResource.allowedCharacters === 'lowercase alphanumeric, hyphens, underscores' && !/^[a-z0-9-_]*$/.test(name)) {
+      errors.push('Name can only contain lowercase alphanumeric characters, hyphens, and underscores.');
+    }
+
+    if (selectedResource.description.includes('Globally unique')) {
+      warnings.push('This resource must be globally unique.');
+    }
+
+    warnings.push(selectedResource.description);
+
+    return {
+      isValid: errors.length === 0,
+      warnings,
+      errors,
+    };
+  };
+
   const generateName = () => {
-    let name = pattern;
-    const selectedResource = availableResources.find(r => r.name === formData.resourceType);
-    
+    if (!selectedResource) return;
+
+    let name = selectedResource.namingPattern;
+    const selectedEnv = environments.find(env => env.name === formData.environment);
+    const selectedRegion = regions.find(reg => reg.name === formData.region);
+
     const values = {
-      resource_type: selectedResource?.abbreviation || '',
-      workload: formData.workload.toLowerCase(),
-      environment: environments.find(env => env.name === formData.environment)?.abbreviation || '',
-      region: regions.find(reg => reg.name === formData.region)?.abbreviation || '',
-      instance: formData.instance,
-      department: formData.department.toLowerCase(),
-      business_unit: formData.businessUnit.toLowerCase(),
+      resource_type: selectedResource.abbreviation,
+      workload: formData.workload.toLowerCase() || 'app',
+      environment: selectedEnv?.abbreviation || formData.environment.toLowerCase() || 'env',
+      region: selectedRegion?.abbreviation || formData.region.toLowerCase() || 'region',
+      instance: formData.instance || '',
+      department: formData.department.toLowerCase() || '',
+      business_unit: formData.businessUnit.toLowerCase() || '',
     };
 
     Object.entries(values).forEach(([key, value]) => {
       name = name.replace(`{${key}}`, value);
     });
 
-    // Remove empty instance if not provided
-    name = name.replace(/-+$/, '');
+    if (!formData.instance && name.endsWith('-')) {
+      name = name.slice(0, -1);
+    }
+
+    if (selectedResource.allowedCharacters.includes('lowercase')) {
+      name = name.toLowerCase();
+    }
+
+    if (!selectedResource.allowedCharacters.includes('hyphens')) {
+      name = name.replace(/-/g, '');
+    }
+
+    if (name.length > selectedResource.maxLength) {
+      name = name.slice(0, selectedResource.maxLength);
+    }
+
     setGeneratedName(name);
+    setValidation(validateName(name));
   };
 
   return (
@@ -107,6 +200,14 @@ export default function NameGenerator() {
               <p className="text-sm text-gray-500">
                 Available placeholders: {'{resource_type}'}, {'{workload}'}, {'{environment}'}, {'{region}'}, {'{instance}'}, {'{department}'}, {'{business_unit}'}
               </p>
+              {selectedResource && (
+                <div className="mt-4 p-3 bg-blue-50 rounded-md">
+                  <h3 className="text-sm font-semibold text-blue-700">Resource-Specific Pattern</h3>
+                  <p className="text-sm text-blue-600">Recommended pattern: {selectedResource.namingPattern}</p>
+                  <p className="text-sm text-blue-600">Max length: {selectedResource.maxLength} characters</p>
+                  <p className="text-sm text-blue-600">Allowed characters: {selectedResource.allowedCharacters}</p>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -124,7 +225,7 @@ export default function NameGenerator() {
                   required
                 >
                   <option value="">Select Resource Category</option>
-                  {Object.entries(resourceCategories).map(([category, data]) => (
+                  {Object.entries(resourceCategories).map(([category]) => (
                     <option key={category} value={category}>
                       {category}
                     </option>
@@ -274,9 +375,32 @@ export default function NameGenerator() {
             <div className="p-4 bg-white rounded border border-gray-200">
               <code className="text-lg font-mono">{generatedName}</code>
             </div>
-            <p className="mt-4 text-sm text-gray-600">
-              Please verify the generated name against Azure's specific naming rules for the selected resource type.
-            </p>
+            {selectedResource && (
+              <div className="mt-4 p-3 bg-blue-50 rounded-md">
+                <h3 className="text-sm font-semibold text-blue-700">Resource Requirements:</h3>
+                <ul className="text-sm text-blue-600 space-y-1">
+                  <li>Max Length: {selectedResource.maxLength} characters</li>
+                  <li>Allowed Characters: {selectedResource.allowedCharacters}</li>
+                  <li>Note: {selectedResource.description}</li>
+                </ul>
+              </div>
+            )}
+            {(validation.warnings.length > 0 || validation.errors.length > 0) && (
+              <div className="mt-4 p-3 bg-red-50 rounded-md">
+                <h3 className="text-sm font-semibold text-red-700 flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5" />
+                  {validation.errors.length > 0 ? 'Errors' : 'Warnings'}
+                </h3>
+                <ul className="text-sm text-red-500 list-disc pl-5 mt-2">
+                  {validation.errors.map((error, index) => (
+                    <li key={index}>{error}</li>
+                  ))}
+                  {validation.warnings.map((warning, index) => (
+                    <li key={index}>{warning}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         )}
       </div>
