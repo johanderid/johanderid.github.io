@@ -343,6 +343,7 @@ export default function NameGenerator() {
                   borderRadius: '4px',
                   fontSize: '14px',
                   marginTop: '5px',
+                  maxHeight: '300px'
                 }}
                 required
               >
