@@ -2,106 +2,491 @@
   "AI + Machine Learning": {
     "description": "Artificial Intelligence and Machine Learning services",
     "resources": [
-      {"name": "Machine Learning Workspace", "abbreviation": "mlw"},
-      {"name": "Cognitive Services", "abbreviation": "cog"},
-      {"name": "Bot Services", "abbreviation": "bot"},
-      {"name": "Azure OpenAI", "abbreviation": "aoai"}
+      {
+        "name": "Machine Learning Workspace",
+        "abbreviation": "mlw",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Workspace names must be unique within a resource group"
+      },
+      {
+        "name": "Cognitive Services",
+        "abbreviation": "cog",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Bot Services",
+        "abbreviation": "bot",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Azure OpenAI",
+        "abbreviation": "aoai",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      }
     ]
   },
   "Analytics": {
     "description": "Data analytics and processing services",
     "resources": [
-      {"name": "Azure Synapse Analytics", "abbreviation": "syn"},
-      {"name": "Azure Databricks", "abbreviation": "adb"},
-      {"name": "HDInsight", "abbreviation": "hdi"},
-      {"name": "Analysis Services", "abbreviation": "as"},
-      {"name": "Data Factory", "abbreviation": "adf"},
-      {"name": "Stream Analytics", "abbreviation": "asa"}
+      {
+        "name": "Azure Synapse Analytics",
+        "abbreviation": "syn",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "lowercase alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Azure Databricks",
+        "abbreviation": "adb",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "HDInsight",
+        "abbreviation": "hdi",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Analysis Services",
+        "abbreviation": "as",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a region"
+      },
+      {
+        "name": "Data Factory",
+        "abbreviation": "adf",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Stream Analytics",
+        "abbreviation": "asa",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      }
     ]
   },
   "Compute + Containers": {
     "description": "Compute and container services",
     "resources": [
-      {"name": "Virtual Machine", "abbreviation": "vm"},
-      {"name": "Virtual Machine Scale Set", "abbreviation": "vmss"},
-      {"name": "Container Registry", "abbreviation": "cr"},
-      {"name": "Container Instance", "abbreviation": "ci"},
-      {"name": "Kubernetes Service", "abbreviation": "aks"},
-      {"name": "App Service", "abbreviation": "app"},
-      {"name": "Function App", "abbreviation": "func"},
-      {"name": "Service Fabric", "abbreviation": "sf"},
-      {"name": "Batch Account", "abbreviation": "batch"}
+      {
+        "name": "Virtual Machine",
+        "abbreviation": "vm",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}-{instance}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Virtual Machine Scale Set",
+        "abbreviation": "vmss",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Container Registry",
+        "abbreviation": "cr",
+        "namingPattern": "{resource_type}{workload}{environment}{region}",
+        "maxLength": 50,
+        "allowedCharacters": "lowercase alphanumeric",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Container Instance",
+        "abbreviation": "ci",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Kubernetes Service",
+        "abbreviation": "aks",
+        "namingPattern": "{workload}-{resource_type}-{environment}-{region}-{instance}",
+        "maxLength": 63,
+        "allowedCharacters": "lowercase alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "App Service",
+        "abbreviation": "app",
+        "namingPattern": "{workload}{resource_type}{environment}{region}{instance}",
+        "maxLength": 60,
+        "allowedCharacters": "lowercase alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Function App",
+        "abbreviation": "func",
+        "namingPattern": "{workload}{resource_type}{environment}{region}{instance}",
+        "maxLength": 60,
+        "allowedCharacters": "lowercase alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Service Fabric",
+        "abbreviation": "sf",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a region"
+      },
+      {
+        "name": "Batch Account",
+        "abbreviation": "batch",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "lowercase alphanumeric",
+        "description": "Must be globally unique"
+      }
     ]
   },
   "Databases": {
     "description": "Database services",
     "resources": [
-      {"name": "Azure SQL Database", "abbreviation": "sql"},
-      {"name": "Azure SQL Managed Instance", "abbreviation": "sqlmi"},
-      {"name": "MySQL Database", "abbreviation": "mysql"},
-      {"name": "PostgreSQL Database", "abbreviation": "psql"},
-      {"name": "Cosmos DB", "abbreviation": "cosmos"},
-      {"name": "Cache for Redis", "abbreviation": "redis"}
+      {
+        "name": "Azure SQL Database",
+        "abbreviation": "sql",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Azure SQL Managed Instance",
+        "abbreviation": "sqlmi",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "MySQL Database",
+        "abbreviation": "mysql",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "PostgreSQL Database",
+        "abbreviation": "psql",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Cosmos DB",
+        "abbreviation": "cosmos",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}-{instance}",
+        "maxLength": 44,
+        "allowedCharacters": "lowercase alphanumeric, hyphens, underscores",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Cache for Redis",
+        "abbreviation": "redis",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      }
     ]
   },
   "DevOps": {
     "description": "Development and operations tools",
     "resources": [
-      {"name": "DevOps Project", "abbreviation": "dev"},
-      {"name": "Application Insights", "abbreviation": "appi"},
-      {"name": "Log Analytics Workspace", "abbreviation": "log"}
+      {
+        "name": "DevOps Project",
+        "abbreviation": "dev",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within an organization"
+      },
+      {
+        "name": "Application Insights",
+        "abbreviation": "appi",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Log Analytics Workspace",
+        "abbreviation": "log",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      }
     ]
   },
   "Integration": {
     "description": "Integration services",
     "resources": [
-      {"name": "Logic Apps", "abbreviation": "logic"},
-      {"name": "Service Bus", "abbreviation": "sb"},
-      {"name": "API Management", "abbreviation": "apim"},
-      {"name": "Event Grid", "abbreviation": "evg"},
-      {"name": "Event Hubs", "abbreviation": "evh"}
+      {
+        "name": "Logic Apps",
+        "abbreviation": "logic",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Service Bus",
+        "abbreviation": "sb",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "API Management",
+        "abbreviation": "apim",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Event Grid",
+        "abbreviation": "evg",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Event Hubs",
+        "abbreviation": "evh",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      }
     ]
   },
   "IoT": {
     "description": "Internet of Things services",
     "resources": [
-      {"name": "IoT Hub", "abbreviation": "iot"},
-      {"name": "IoT Central", "abbreviation": "iotc"},
-      {"name": "Digital Twins", "abbreviation": "dt"},
-      {"name": "Time Series Insights", "abbreviation": "tsi"}
+      {
+        "name": "IoT Hub",
+        "abbreviation": "iot",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "IoT Central",
+        "abbreviation": "iotc",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Digital Twins",
+        "abbreviation": "dt",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Time Series Insights",
+        "abbreviation": "tsi",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      }
     ]
   },
   "Networking": {
     "description": "Network services",
     "resources": [
-      {"name": "Virtual Network", "abbreviation": "vnet"},
-      {"name": "Subnet", "abbreviation": "snet"},
-      {"name": "Network Security Group", "abbreviation": "nsg"},
-      {"name": "Application Gateway", "abbreviation": "agw"},
-      {"name": "Load Balancer", "abbreviation": "lb"},
-      {"name": "Public IP", "abbreviation": "pip"},
-      {"name": "VPN Gateway", "abbreviation": "vpn"},
-      {"name": "ExpressRoute Circuit", "abbreviation": "erc"},
-      {"name": "Front Door", "abbreviation": "fd"},
-      {"name": "CDN Profile", "abbreviation": "cdn"}
+      {
+        "name": "Virtual Network",
+        "abbreviation": "vnet",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens, underscores, periods",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Subnet",
+        "abbreviation": "snet",
+        "namingPattern": "{resource_type}-{workload}-{environment}",
+        "maxLength": 80,
+        "allowedCharacters": "alphanumeric, hyphens, underscores, periods",
+        "description": "Must be unique within a virtual network"
+      },
+      {
+        "name": "Network Security Group",
+        "abbreviation": "nsg",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 80,
+        "allowedCharacters": "alphanumeric, hyphens, underscores, periods",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Application Gateway",
+        "abbreviation": "agw",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 80,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Load Balancer",
+        "abbreviation": "lb",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 80,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Public IP",
+        "abbreviation": "pip",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 80,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "VPN Gateway",
+        "abbreviation": "vpn",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 80,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "ExpressRoute Circuit",
+        "abbreviation": "erc",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 80,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Front Door",
+        "abbreviation": "fd",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "CDN Profile",
+        "abbreviation": "cdn",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      }
     ]
   },
   "Security": {
     "description": "Security services",
     "resources": [
-      {"name": "Key Vault", "abbreviation": "kv"},
-      {"name": "Application Security Group", "abbreviation": "asg"},
-      {"name": "DDoS Protection Plan", "abbreviation": "ddos"},
-      {"name": "Azure Firewall", "abbreviation": "afw"}
+      {
+        "name": "Key Vault",
+        "abbreviation": "kv",
+        "namingPattern": "{resource_type}{workload}{environment}{region}",
+        "maxLength": 24,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be globally unique"
+      },
+      {
+        "name": "Application Security Group",
+        "abbreviation": "asg",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 80,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "DDoS Protection Plan",
+        "abbreviation": "ddos",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 80,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Azure Firewall",
+        "abbreviation": "afw",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 80,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      }
     ]
   },
   "Storage": {
     "description": "Storage services",
     "resources": [
-      {"name": "Storage Account", "abbreviation": "st"},
-      {"name": "Recovery Services Vault", "abbreviation": "rsv"},
-      {"name": "Backup Vault", "abbreviation": "bv"},
-      {"name": "Data Lake Storage", "abbreviation": "dls"}
+      {
+        "name": "Storage Account",
+        "abbreviation": "st",
+        "namingPattern": "{resource_type}{workload}{environment}{region}{instance}",
+        "maxLength": 24,
+        "allowedCharacters": "lowercase alphanumeric",
+        "description": "Must be globally unique, lowercase only, no hyphens"
+      },
+      {
+        "name": "Recovery Services Vault",
+        "abbreviation": "rsv",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Backup Vault",
+        "abbreviation": "bv",
+        "namingPattern": "{resource_type}-{workload}-{environment}-{region}",
+        "maxLength": 64,
+        "allowedCharacters": "alphanumeric, hyphens",
+        "description": "Must be unique within a resource group"
+      },
+      {
+        "name": "Data Lake Storage",
+        "abbreviation": "dls",
+        "namingPattern": "{resource_type}{workload}{environment}{region}",
+        "maxLength": 24,
+        "allowedCharacters": "lowercase alphanumeric",
+        "description": "Must be globally unique, lowercase only, no hyphens"
+      }
     ]
   }
 }
