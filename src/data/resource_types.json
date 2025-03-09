@@ -1,0 +1,12 @@
+[
+  {"name": "Virtual Machine", "abbreviation": "vm"},
+  {"name": "Storage Account", "abbreviation": "st"},
+  {"name": "App Service", "abbreviation": "app"},
+  {"name": "Key Vault", "abbreviation": "kv"},
+  {"name": "Network Security Group", "abbreviation": "nsg"},
+  {"name": "Virtual Network", "abbreviation": "vnet"},
+  {"name": "Subnet", "abbreviation": "snet"},
+  {"name": "Public IP", "abbreviation": "pip"},
+  {"name": "Load Balancer", "abbreviation": "lb"},
+  {"name": "Azure SQL Database", "abbreviation": "sql"}
+]

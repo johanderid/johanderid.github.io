@@ -1,0 +1,10 @@
+[
+  {"name": "East US", "abbreviation": "eastus"},
+  {"name": "West US", "abbreviation": "westus"},
+  {"name": "North Europe", "abbreviation": "northeu"},
+  {"name": "West Europe", "abbreviation": "westeu"},
+  {"name": "Southeast Asia", "abbreviation": "sea"},
+  {"name": "East Asia", "abbreviation": "eastasia"},
+  {"name": "UK South", "abbreviation": "uksouth"},
+  {"name": "Australia East", "abbreviation": "aueast"}
+]

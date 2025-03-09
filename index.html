@@ -1,43 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Darts Scoring App</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div id="game-area">
-        <div class="player-area" id="player1-area">
-            <h2>Player 1: <input type="text" id="player1-name" value="Player 1"></h2>
-            <p id="player1-score">501</p>
-            <p id="player1-average">Avg: 0</p>
-        </div>
-        <div class="player-area" id="player2-area">
-            <h2>Player 2: <input type="text" id="player2-name" value="Player 2"></h2>
-            <p id="player2-score">501</p>
-            <p id="player2-average">Avg: 0</p>
-        </div>
-
-        <div id="input-area">
-            <label for="score-input">Enter Score:</label>
-            <input type="number" id="score-input" min="0" max="180">
-            <button id="submit-score">Submit Score</button>
-            <button id="double-button">Double</button>
-            <button id="triple-button">Triple</button>
-            <button id="miss-button">Miss</button>
-        </div>
-
-        <div id="game-controls">
-            <button id="new-game-button">New Game</button>
-            <label for="legs-sets">Legs/Sets:</label>
-            <select id="legs-sets">
-                <option value="unlimited">Unlimited</option>
-                <option value="3">3</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-        <div id="message-area"></div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
