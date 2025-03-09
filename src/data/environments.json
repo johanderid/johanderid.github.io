@@ -1,8 +1,0 @@
-[
-  {"name": "Development", "abbreviation": "dev"},
-  {"name": "Testing", "abbreviation": "test"},
-  {"name": "Staging", "abbreviation": "stage"},
-  {"name": "Production", "abbreviation": "prod"},
-  {"name": "Shared Services", "abbreviation": "shared"},
-  {"name": "Sandbox", "abbreviation": "sbx"}
-]
