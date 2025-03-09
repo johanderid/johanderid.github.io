@@ -60,6 +60,7 @@ export default function NameGenerator() {
   useEffect(() => {
     setShowDepartment(pattern.includes('{department}'));
     setShowBusinessUnit(pattern.includes('{business_unit}'));
+    console.log('Regions loaded:', regions); // Debug log
   }, [pattern]);
 
   useEffect(() => {
